@@ -14,15 +14,25 @@ const winningCombos = [[0,1,2],[3,4,5], [6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],
     const [winner ,setWinner] = useState(false)
     const [message, setMessage]=useState("")
     
-  function  handleClick(e){
+  function resetGame(){
+
+    setWinner(true)
+    setPlayer_A([])
+    setPlayer_B([])
+setBoard([ null, null,null,null,null,null,null,null,null ])
+
+
+  }
+  
+  
+  
+  
+  
+    function  handleClick(e){
 e.preventDefault()
 if(emptyBoard.includes(null) === false){
-    console.log("Game over")
     setMessage("Its a draw")
-    setWinner(true)
-    setBoard([ null, null,null,null,null,null,null,null,null ])
-setPlayer_A([])
-setPlayer_B([])
+   resetGame()
     return
 }
 
@@ -30,10 +40,10 @@ setPlayer_B([])
 
 const value = parseInt(e.target.id)
 
-console.log(value)
+
 if (emptyBoard[value]!= null){
 
-    alert("can't play  here")
+    alert("You can't play here :(")
     return
 }
 if(playerGo === false){
@@ -42,19 +52,14 @@ let array = emptyBoard
 array.splice(value, 1, "X")
 player_A.push(value)
 player_A.sort()
-console.log(array)
-console.log(player_A)
+
 setPlayerGo(true)
 setWinner(false)
 for(let i = 0 ; i <winningCombos.length; i++){
 
 if(winningCombos[i].every(elem =>player_A.includes(elem)) === true){
-console.log(winningCombos[i])
-setWinner(true)
 setMessage("X wins")
-setBoard([ null, null,null,null,null,null,null,null,null ])
-setPlayer_A([])
-setPlayer_B([])
+resetGame()
 }
 
 
@@ -65,10 +70,7 @@ setPlayer_B([])
     if(emptyBoard.includes(null) === false){
         alert("Game over")
         setMessage("Its a draw")
-        setWinner(true)
-        setBoard([ null, null,null,null,null,null,null,null,null ])
-        setPlayer_A([])
-        setPlayer_B([])
+        resetGame()
 
         return
     }  
@@ -79,17 +81,12 @@ setPlayer_B([])
    player_B.push(value)
    player_B.sort()
    setPlayerGo(false)
-   console.log(player_B)
+  
 setWinner(false)
    for(let i = 0 ; i <winningCombos.length; i++){
-
     if(winningCombos[i].every(elem =>player_B.includes(elem)) === true){
-    console.log(winningCombos[i])
-    setWinner(true)
-    setMessage("O wins")
-    setPlayer_A([])
-    setPlayer_B([])
-setBoard([ null, null,null,null,null,null,null,null,null ])
+   setMessage("O wins")
+   resetGame()
     }
     
     
@@ -108,7 +105,7 @@ setBoard([ null, null,null,null,null,null,null,null,null ])
     
 
     
-  console.log(winner)  
+  
     
     
     return (
