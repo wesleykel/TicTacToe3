@@ -67,5 +67,18 @@ and (max-device-width: 812px){
     font-size: 25vw;
     }
 
+    .message{
+
+
+      padding:1em;
+      font-size: 3em;
+      text-align: center;
+      
+      }
+
+body{
+
+  overflow-x: scroll;
+}
 
 } 
