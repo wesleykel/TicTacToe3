@@ -50,3 +50,22 @@ font-size: 3em;
 text-align: center;
 
 }
+
+
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 812px){
+
+  .gridLines{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 2px  solid;
+    height: 20vw;
+    width: 20vw;
+    font-size: 25vw;
+    }
+
+
+} 
